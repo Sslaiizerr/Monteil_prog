@@ -8,33 +8,33 @@ class ListeAdj:
 
     def __init__(self, nbSommets):
         assert nbSommets >= 1, "le nombre de sommet de liste d'Adjacence supérieur à 1"
-        self._listA = []
+        self._listeAdj = []
         for i in range(nbSommets+1):
-            self._listA.append([])
+            self._listeAdj.append([])
 
 # --------------------------------------------------
     # COMPLETER LA CLASSE
 
     def nbSommets(self):
-        return len(self._listA) - 1
+        return len(self._listeAdj) - 1
 
     def ajoutArete(self, i, j):
         assert 0 < i <= self.nbSommets(), "le sommet est incorrect"
-        if not j in self._listA[i] and not i in self._listA[j]:
-            self._listA[i].append(j)
-            self._listA[j].append(i)
+        if not j in self._listeAdj[i] and not i in self._listeAdj[j]:
+            self._listeAdj[i].append(j)
+            self._listeAdj[j].append(i)
 
     def enleveArete(self, i, j):
         assert 0 < i <= self.nbSommets(), "le sommet est incorrect"
         assert 0 < j <= self.nbSommets(), "le sommet est incorrect"
-        if j in self._listA[i] == True:
-            self._listA[i].remove(j)
-        if i in self._listA[j] == True:
-            self._listA[j].remove(i)
+        if j in self._listeAdj[i] == True:
+            self._listeAdj[i].remove(j)
+        if i in self._listeAdj[j] == True:
+            self._listeAdj[j].remove(i)
 
     def nbAretes(self):
         nbA = 0
-        for elt in self._listA:
+        for elt in self._listeAdj:
             nbA = nbA + len(elt)
         # return (nbA / 2) si le graphes est non orienté
         # return nbA
@@ -42,24 +42,24 @@ class ListeAdj:
 
     def getAretesSommet(self, i):
         assert 0 < i <= self.nbSommets(), "le sommet est incorrect"
-        return self._listA[i]
+        return self._listeAdj[i]
 
     def degreSommet(self, i):
         assert 0 < i <= self.nbSommets(), "le sommet est incorrect"
-        # print("à compléter !")
+        return len(self._listeAdj[i])
 
     def degre(self):
-        T = Tableau(len(self._listA)-1)
-        for i in range(1, len(self._listA)):
-            T.setIeme(i, len(self._listA[i]))
+        T = Tableau(len(self._listeAdj)-1)
+        for i in range(1, len(self._listeAdj)):
+            T.setIeme(i, len(self._listeAdj[i]))
         return T
 
     # GRAPHIQUE NE FONCTIONNE PAS (NE PAS CHERCHER A CE QUE CA FONCTIONNE)
     # def draw(self, g):
     #     # c = graphviz.Digraph(strict=False) # orienté
     #     c = graphviz.Graph(strict=True)  # non orienté
-    #     for i in range(1, len(self._listA)):
-    #         for j in self._listA[i]:
+    #     for i in range(1, len(self._listeAdj)):
+    #         for j in self._listeAdj[i]:
     #             c.edge(str(i), str(j))
 
         name = g + '.gv'
@@ -71,13 +71,13 @@ class ListeAdj:
 
 
     def __str__(self):
-        return str(self._listA)
+        return str(self._listeAdj)
 
     def __repr__(self):
         return "ListeAdj(" + str(self.nbSommets()) + ")"
 
     def __eq__(self, list):
-        return self._listA == list
+        return self._listeAdj == list
 
 
 if __name__ == "__main__":
