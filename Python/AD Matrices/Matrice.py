@@ -1,5 +1,4 @@
-# import graphviz
-# cmd exécuter en tant qu’admin et lancer conda install python-graphviz
+# import graphviz #cmd exécuter en tant qu’admin et lancer conda install python-graphviz
 # fermer le lecteur pdf avant de relancer le code python
 # TAD Matrice
 #
@@ -25,11 +24,8 @@
 #                   e si i = i' et j = j'
 #                   getIJème(mat, i, j) sinon
 
-
 class Matrice:
 
-    # /// IMPORTANT \\\
-    # A ETUDIER
     # créerMatrice : Entier x Entier → Matrice
     def __init__(self, n, m):
         assert n > 0, "le nombre de lignes de la matrice doit être positif"
@@ -42,29 +38,23 @@ class Matrice:
             if i == 0:
                 ligne.append("  ")
             else:
-                ligne.append("N"+str(i))
+                ligne.append("N" + str(i))
             for j in range(1, self._m):
                 if i == 0:
-                    ligne.append("N"+str(j))
+                    ligne.append("N" + str(j))
                 else:
                     ligne.append(0)
             self._elements.append(ligne)
 
     # nbLignes : Matrice → Entier
-    # Le nombre de ligne de la matrice correspond a la longueur de la matrice
-    # On fait '-1' pour ne pas compter l'affichage dans la longueur
     def nbLignes(self):
         return self._n - 1
 
     # nbColonnes : Matrice → Entier
-    # Le nombre de ligne de la matrice correspond a la hauteur de la matrice
-    # On fait '-1' pour ne pas compter l'affichage dans la longueur
     def nbColonnes(self):
         return self._m - 1
 
     # getIJème : Matrice x Entier x Entier → Entier
-    # Renvoie 1 si une liaison est faite entre deux noeuds (que l'on choisit en paramètres)
-    # de la matrice et 0 sinon
     def getIJeme(self, i, j):
         assert 0 < i <= self._n, "l'indice des lignes n'est pas valide"
         assert 0 < j <= self._m, "l'indice des colonnes n'est pas valide"
@@ -72,8 +62,6 @@ class Matrice:
 
     # setIJème : Matrice x Entier x Entier x Entier → Matrice
     def setIJeme(self, i, j, e):
-        # Les assert sont utilisés pour vérifier que l'on soit bien dans la matrice.
-        # Car le rang 0 représente l'affichage de la matrice (n° des lignes et colonnes)
         assert 1 <= i < self._n, "l'indice des lignes n'est pas valide"
         assert 1 <= j < self._m, "l'indice des colonnes n'est pas valide"
         self._elements[i][j] = e
@@ -101,23 +89,20 @@ class Matrice:
                     print(self._elements[i][j], " ", end="")
             print("")
 
-    # NE FONCTIONNE PAS PARCE QUE JE N'AI PAS IMPORTE LES GRAPHES
-
-    # def draw(self, g):
-    #     # ne trace pas les arêtes en double (non orienté)
-    #     c = graphviz.Graph(strict=True)
-    #     for i in range(1, len(self._elements)):
-    #         for j in range(1, len(self._elements[i])):
-    #             if self._elements[i][j] == 1:
-    #                 c.edge(str(i), str(j))
+    # LA FONCTION DRAW NE FONCTIONNE QU'AVEC GRAPHVIZ (GRAPHVIZ NE FONCTIONNE PAS)
+    # def draw(self,g):
+    #     c = graphviz.Graph(strict=True) # ne trace pas les arêtes en double (non orienté)
+    #     for i in range (1,len(self._elements)):
+    #         for j in range (1,len(self._elements[i])):
+    #             if self._elements[i][j] == 1 :
+    #                 c.edge(str(i),str(j))
     #     name = g + '.gv'
-    #     # fermer le lecteur pdf avant de relancer le code python
-    #     c.render(name, view=True)
+    #     c.render(name, view=True) # fermer le lecteur pdf avant de relancer le code python
 
 
 if __name__ == "__main__":
     M = Matrice(5, 5)
-    # M.dump()
+    M.dump()
     M.setIJeme(1, 2, 1)
     M.setIJeme(1, 5, 1)
     M.setIJeme(2, 1, 1)
@@ -132,14 +117,12 @@ if __name__ == "__main__":
     M.setIJeme(5, 1, 1)
     M.setIJeme(5, 2, 1)
     M.setIJeme(5, 4, 1)
-    # M.dump()
-    # M.draw("M")
-    # M.setIJeme(1, 2, 0)
-    # M.setIJeme(2, 1, 0)
-    # M.dump()
-    # M.draw("M2")
-    # print(M.nbLignes())
-    # print(M.nbColonnes())
-    # print(M.getIJeme(2, 3))
-    # Trace la matrice
     M.dump()
+    M.draw("M")
+    M.setIJeme(1, 2, 0)
+    M.setIJeme(2, 1, 0)
+    M.dump()
+    M.draw("M2")
+    print(M.nbLignes())
+    print(M.nbColonnes())
+    print(M.getIJeme(2, 3))

@@ -11,37 +11,24 @@ from Matrice import Matrice
 def listeToMatrice(liste):  # liste à convertir
     # print("à compléter !")
     M = Matrice(liste.nbSommets(), liste.nbSommets())
-    print(M)
     for i in range(1, liste.nbSommets()):
         for j in liste.getAretesSommet(i):
             M.setIJeme(i, j, 1)
-    return M  # retourne la matrice
-
-    """
-    M = Matrice(len(liste._listA)-1,len(liste._listA)-1)
-    for i in range (1,len(liste._listA)):
-        for j in liste._listA[i]:
-            M.setIJeme(i,j,1)
-    return M # retourne la matrice
-
-    """
+    return M
 
 
 def areteToListe(n, l):  # nbre de sommet, liste des aretes à convertir,
     # print("à compléter !")
     listA = ListeAdj(n + 1)
     for i in L:
-        # print(i)
-        # print("N1=",i[0],"N2=",i[1])
         listA.ajoutArete(i[0], i[1])
-    return listA    # retourne la liste d'adjacence
+    return listA
 
 
 def matToListe(M_L):
     # print("à compléter !")
     listA = ListeAdj(len(M_L) - 1)
     for i in range(1, len(M_L)):
-        # print(M_L[i])
         for j in range(1, len(M_L)):
             if M_L[i][j] == 1:
                 listA.ajoutArete(i, j)
@@ -100,11 +87,11 @@ if __name__ == "__main__":
     print(M)
     M.dump()
     # M.draw("Matrice_M")
+    # Fin Test Matrice'''
 
     # Test listeToMatrice
     A = A_liste_A()
     print(A)
-
     MB = listeToMatrice(A)
     MB.dump()
     # Fin Test listeToMatrice
@@ -114,10 +101,10 @@ if __name__ == "__main__":
          [2, 1], [2, 3], [2, 4], [2, 5],
          [3, 2], [3, 4],
          [4, 2], [4, 3], [4, 5],
-         [5, 1], [5, 2], [5, 4]]
-
-    ListeAdj = areteToListe(5, L)
-    print(ListeAdj)
+         [5, 1], [5, 2], [5, 4]
+         ]
+    ListeAdja = areteToListe(5, L)
+    print(ListeAdja)
     # ListeAdj.draw("Arete_Liste")
     # Fin Test arete_To_Liste
 
@@ -132,7 +119,6 @@ if __name__ == "__main__":
 
     print(M)
     ListeAdj = matToListe(M)
-    print()
     print(ListeAdj)
     # ListeAdj.draw("liste-g")
     # Fin Test mat_to_liste
