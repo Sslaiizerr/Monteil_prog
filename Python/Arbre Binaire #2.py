@@ -85,7 +85,7 @@
 #       minimum : Arbre[E] → Entier
 #       maximum : Arbre[E] → Entier
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 class Arbre:
@@ -303,7 +303,7 @@ class Arbre:
 
     # affiche un arbre binaire de recherche
     def _draw(self):
-        plt.rcParams.update({'font.size': 14})
+        # plt.rcParams.update({'font.size': 14})
         # parcours en largeur
         an = []  # stockage des noeuds visités
         res = []  # stockage des noeuds parcourus en largeur
@@ -322,12 +322,12 @@ class Arbre:
             # tracé de l'arc entre le noeud courant et les fils gauche et droit
             if (n[0]._gauche is not None):
                 an.append((n[0]._gauche, n[1] - (ecart + h), h, "left"))
-                plt.plot([n[1], n[1] - (ecart + h)],
-                         [n[2] - 3, h + 3], color='red', marker='o')
+                # plt.plot([n[1], n[1] - (ecart + h)],
+                # [n[2] - 3, h + 3], color='red', marker='o')
             if (n[0]._droit is not None):
                 an.append((n[0]._droit, n[1] + (ecart + h), h, "right"))
-                plt.plot([n[1], n[1] + (ecart + h)],
-                         [n[2] - 3, h + 3], color='green', marker='o')
+                # plt.plot([n[1], n[1] + (ecart + h)],
+                # [n[2] - 3, h + 3], color='green', marker='o')
         # une fois les noeuds positionnés, on les affiche, tout en calculant
         # la taille de graphique nécessaire
         xmin = res[0][1]
@@ -341,17 +341,17 @@ class Arbre:
                 else:
                     decalage = nbNoeuds - 30
                 # la valeur du noeud est affichée
-                plt.annotate(str(x[0]._racine), (x[1] + decalage, x[2]))
+                # plt.annotate(str(x[0]._racine), (x[1] + decalage, x[2]))
                 #    print(str(x[0]._racine), (x[1] +decalage, x[2]), x[3])
                 if (x[1] < xmin):
                     xmin = x[1]
                 if (x[1] > xmax):
                     xmax = x[1]
         # taille du graphique
-        plt.xlim(xmin - 100, xmax + 100)
-        plt.ylim(-10, posInit + 10)
+        # plt.xlim(xmin - 100, xmax + 100)
+        # plt.ylim(-10, posInit + 10)
         # affichage du graphique
-        plt.show()
+        # plt.show()
 
     # construire l'arbre 12,20,20,8,10,14,13,16,18,17,19,21
     def construireArbre():
