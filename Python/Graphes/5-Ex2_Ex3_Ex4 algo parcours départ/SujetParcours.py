@@ -37,10 +37,30 @@ def construireGrapheG3():
 
 def largeur(g, i):  # largeur(G,x) :
     # print("à compléter !")
-    # visite = [False, False, False, False] ## Nombre de sommets
-    visite = [False] * [g.nbSommets() + 1]
-    F = [i]
-    ordre_de_visite = [i]
+    # initialiser un tableau Visite à Faux
+    Visite = [False] * (g.nbSommets()+1)
+    F = [i]  # F = [x]
+    # enregistrement sous forme de liste des sommets visités par parcours_largeur
+    ordreVisite = [i]
+    Visite[i] = True  # Visite[i] = vrai
+    while F != []:  # Tant que F n’est pas vide
+        y = F[0]
+        print(y)  # sommet(visité)
+        del F[0]  # considérer y= F[0]  la t€te de F (et l’enlever de F)
+        for z in g.getAretesSommet(y):  # pour chaque successeur z de y
+            if Visite[z] == False:  # Si visite[z] = faux
+                Visite[z] = True  # Visite[z] = vrai
+                # print(Visite)
+                F.append(z)  # ajouter z à la fin de la file F
+                print(F)
+                # enregistrement sous forme de liste des sommets visités par parcours_largeur
+                ordreVisite.append(z)
+                print(ordreVisite)
+                print("")
+            else:
+                print(z, "déjà visité")
+                print("")
+    return ordreVisite  # retour de liste des sommets visités par parcours_largeur
 
 
 # -----------------------------------------------------------
@@ -55,12 +75,25 @@ def largeur(g, i):  # largeur(G,x) :
 
 def profondeurPremiereVisite(g, i):  # profondeurPremiereVisite(g2, 1)
     # print("à compléter !")
-    pass
+    # initialiser un tableau Visite à Faux
+    Visite = [False] * (g.nbAretes()+1)
+    Visite[i] = True  # Visite[x] = Vrai
+    ordreVisite = []
+    ordreVisite.append(i)  # {première visite de i}
+    Visite, ordreVisite = profondeurRecPremiereVisite(
+        g, i, Visite, ordreVisite)
+    return ordreVisite
 
 
 def profondeurRecPremiereVisite(g, i, Visite, ordreVisite):
     # print("à compléter !")
-    pass
+    for y in g.getAretesSommet(i):  # Pour chaque voisin y de x faire
+        if Visite[y] == False:  # Si Visite[y] = faux alors profond(G,y)
+            Visite[y] = True
+            ordreVisite.append(y)
+            Visite, ordreVisite = profondeurRecPremiereVisite(
+                g, y, Visite, ordreVisite)
+    return Visite, ordreVisite
 
 
 # -----------------------------------------------------
@@ -74,6 +107,7 @@ sont identiques (sauf qu'elles n'appellent pas la mÃªme fonction auxiliaire Ã
 
 
 def profondeurDerniereVisite(g, i):
+    # print("à compléter !")
     Visite = [False] * (g.nbAretes()+1)  # initialiser un tableau Visite à Faux
     Visite[i] = True  # Visite[x] = Vrai
     ordreVisite = []  # {premiŁre visite de i}
@@ -85,6 +119,7 @@ def profondeurDerniereVisite(g, i):
 
 
 def profondeurRecDerniereVisite(g, i, Visite, ordreVisite):
+    # print("à compléter !")
     for y in g.getAretesSommet(i):  # Pour chaque voisin y de x faire
         if Visite[y] == False:  # Si Visite[y] = faux alors profond(G,y)
             Visite[y] = True
@@ -106,8 +141,10 @@ if __name__ == '__main__':
     # g3.draw("g3")
     # print("parcours du graphe G2 en largeur : " + str(largeur(g2, 1)))
     # print("parcours du graphe G3 en largeur : " + str(largeur(g3, 1)))
-    # print("parcours du graphe G2 en profondeur (première visite) : " + str(profondeurPremiereVisite(g2, 1)))
-    # print("parcours du graphe G3 en profondeur (première visite) : " + str(profondeurPremiereVisite(g3, 1)))
+    print("parcours du graphe G2 en profondeur (première visite) : " +
+          str(profondeurPremiereVisite(g2, 1)))
+    print("parcours du graphe G3 en profondeur (première visite) : " +
+          str(profondeurPremiereVisite(g3, 1)))
     print("parcours du graphe G2 en profondeur (dernière visite) : " +
           str(profondeurDerniereVisite(g2, 1)))
     print("parcours du graphe G3 en profondeur (dernière visite) : " +

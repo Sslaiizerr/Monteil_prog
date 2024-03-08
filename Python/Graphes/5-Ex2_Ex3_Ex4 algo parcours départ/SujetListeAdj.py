@@ -39,7 +39,7 @@ class ListeAdj:
         for i in range(1, len(self._listA)):
             NbA = NbA + len(self._listA[i])
         # return int(NbA/2)  # non orienté
-        # return int(NbA)  # orienté
+        return int(NbA)  # orienté
 
     def getAretesSommet(self, i):
         assert 0 < i <= self.nbSommets(), "le sommet est incorrect"
@@ -91,7 +91,7 @@ if __name__ == "__main__":
     A.ajoutArete(3, 4)
     A.ajoutArete(4, 5)
     print(A)
-    A.draw("A")  # fermer le lecteur pdf avant de relancer le code python
+    # A.draw("A")  # fermer le lecteur pdf avant de relancer le code python
     # A.enleveArete(4,5)
     # print(A)
     # A.draw("A-") # fermer le lecteur pdf avant de relancer le code python
